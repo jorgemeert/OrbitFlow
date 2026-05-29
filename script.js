@@ -18,6 +18,9 @@ map.on("click", (event) => {
 
   coordsText.textContent = `Latitude: ${latFixed} | Longitude: ${lngFixed}`;
 
+  // Preenche o input de latitude ao clicar no mapa
+  document.getElementById("latitude").value = latFixed;
+
   if (marker) {
     marker.setLatLng([lat, lng]);
   } else {

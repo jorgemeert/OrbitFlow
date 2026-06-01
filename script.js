@@ -126,13 +126,13 @@ dados.addEventListener("click", (event) => {
 
       let eficiencia = "";
 
-      if (energia > 420) {
+      if (ganhoRotacao > 420) {
         eficiencia = "Eficiência: Perfeita";
-      } else if (energia > 350) {
+      } else if (ganhoRotacao > 350) {
         eficiencia = "Eficiência: Alta";
-      } else if (energia > 200) {
+      } else if (ganhoRotacao > 200) {
         eficiencia = "Eficiência: Média";
-      } else if (energia > 100) {
+      } else if (ganhoRotacao > 100) {
         eficiencia = "Eficiência: Baixa";
       } else {
         eficiencia = "Eficiência: Muito Baixa";
@@ -157,13 +157,13 @@ dados.addEventListener("click", (event) => {
         const [energia1, ganhoRotacao1, eficiencia1] =
           calcularEnergia(latitude);
         const [energia2, ganhoRotacao2, eficiencia2] =
-          calcularEnergia(latitude);
+          calcularEnergia(latitude2);
 
         document.querySelectorAll(".dadosComp").forEach((e) => e.remove());
         document.querySelector(".btsTroca").remove();
         document.querySelector(".dados").innerHTML =
           `<div> <h2>Resultado</h2><div class='resultComp'><div class='base1'><p>Base 1</p><p id='base'>Base: ${base}</p> <p id='latitude'>Latitude: ${latitude}</p><p>Energia estimada</p><p>${energia1.toFixed(2)} MJ/t</p> <p>Ganho de rotação</p> <p>${ganhoRotacao1.toFixed(2)} m/s</p><p>${eficiencia1}</p></div>
-          <div class='base2'><p>Base 2</p><p id='base2'>Base: ${base2} </p> <p id='latitude2'>Latitude:${latitude2} </p><p>Energia estimada</p><p>${energia2.toFixed(2)} MJ/t</p> <p>Ganho de rotação</p> <p>${ganhoRotacao2.toFixed(2)} m/s</p><p>${eficiencia1}</p></div></div> <button id='btnReset'>Nova análise</button>`;
+          <div class='base2'><p>Base 2</p><p id='base2'>Base: ${base2} </p> <p id='latitude2'>Latitude:${latitude2} </p><p>Energia estimada</p><p>${energia2.toFixed(2)} MJ/t</p> <p>Ganho de rotação</p> <p>${ganhoRotacao2.toFixed(2)} m/s</p><p>${eficiencia2}</p></div></div> <button id='btnReset'>Nova análise</button>`;
         console.log(ganhoRotacao2);
         btnReset.addEventListener("click", () => {
           location.reload();

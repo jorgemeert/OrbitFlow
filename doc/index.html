@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+</head>
+  <body>
+<header>
+      <h1>OrbitFlow — Documentação</h1>
+      <p>Global Solution — Web Development & Front-end Design | FIAP</p>
+    </header>
+
+    <main>
+
+      <article class="secao">
+        <h2>O que é o OrbitFlow?</h2>
+        <p>
+          O OrbitFlow é uma aplicação web interativa que permite analisar a eficiência energética de locais no globo para lançamento de foguetes, com base na latitude geográfica.
+        </p>
+        <p>
+          Quanto mais próximo do equador um local estiver, maior o ganho com a rotação da Terra — e menor a energia necessária para colocar um foguete em órbita. O OrbitFlow torna esse cálculo simples e visual.
+        </p>
+        <p>Acesse o APP: <a href="/app/app.html" target="_blank" rel="noopener noreferrer">OrbitFlow</a></p>
+      </article>
+
+      <section class="secao" aria-labelledby="titulo-funcionalidades">
+        <h2 id="titulo-funcionalidades">Funcionalidades</h2>
+        <ul>
+          <li>Clicar em qualquer ponto do mapa para capturar latitude e longitude automaticamente</li>
+          <li>Analisar individualmente a eficiência energética de uma base de lançamento</li>
+          <li>Comparar duas bases lado a lado, com cálculo de ganho de rotação e energia estimada</li>
+          <li>Classificar a eficiência do local em cinco níveis</li>
+        </ul>
+      </section>
+
+      <section class="secao" aria-labelledby="titulo-eficiencia">
+        <h2 id="titulo-eficiencia">Níveis de Eficiência</h2>
+        <dl>
+          <div class="ef-linha">
+            <dt><span class="ef-badge" style="background:#15803d;">Perfeita</span></dt>
+            <dd class="ef-desc">0° – 10° de latitude — máximo ganho rotacional</dd>
+          </div>
+          <div class="ef-linha">
+            <dt><span class="ef-badge" style="background:#22c55e; color:#000;">Alta</span></dt>
+            <dd class="ef-desc">10° – 30° — excelente aproveitamento</dd>
+          </div>
+          <div class="ef-linha">
+            <dt><span class="ef-badge" style="background:#ca8a04;">Média</span></dt>
+            <dd class="ef-desc">30° – 50° — aproveitamento moderado</dd>
+          </div>
+          <div class="ef-linha">
+            <dt><span class="ef-badge" style="background:#dc2626;">Baixa</span></dt>
+            <dd class="ef-desc">50° – 70° — pouco ganho rotacional</dd>
+          </div>
+          <div class="ef-linha">
+            <dt><span class="ef-badge" style="background:#7f1d1d;">Muito Baixa</span></dt>
+            <dd class="ef-desc">70° – 90° — região polar, ganho mínimo</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="secao" aria-labelledby="titulo-tecnologias">
+        <h2 id="titulo-tecnologias">Tecnologias</h2>
+        <ul role="list" style="list-style:none; padding:0; margin:0;">
+          <li style="display:inline;"><span class="tag">HTML</span></li>
+          <li style="display:inline;"><span class="tag">CSS</span></li>
+          <li style="display:inline;"><span class="tag">JavaScript</span></li>
+          <li style="display:inline;"><span class="tag">Leaflet.js</span></li>
+          <li style="display:inline;"><span class="tag">OpenStreetMap</span></li>
+        </ul>
+      </section>
+
+      <section class="secao" aria-labelledby="titulo-equipe">
+        <h2 id="titulo-equipe">Equipe</h2>
+        <ul class="equipe" role="list" style="padding:0; list-style:none;">
+          <li class="membro">🧑‍💻 Jorge Meert</li>
+          <li class="membro">🧑‍💻 Vinicius Henrique</li>
+          <li class="membro">🧑‍💻 Gabriel Donato</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer>
+      <section class="rodape" aria-labelledby="titulo-simplificacoes">
+        <h2 id="titulo-simplificacoes">Simplificações adotadas</h2>
+        <ul>
+          <li>O modelo considera lançamentos desde a superfície (nível do mar) até a órbita geoestacionária.</li>
+          <li>As perdas aerodinâmicas não são consideradas no cálculo.</li>
+          <li>O modelo assume cargas orbitando no mesmo sentido de rotação da Terra.</li>
+        </ul>
+      </section>
+    </footer>
+
+  </body>
+</html>
+
+
+  </body>
+</html>

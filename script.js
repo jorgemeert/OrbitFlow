@@ -1,3 +1,45 @@
+// FUNÇÕES PARA O CÁLCULO
+
+function calcularEnergia(latitude) {
+  const phi = latitude * (Math.PI / 180);
+
+  const R_T = 6371000;
+  const r_GEO = 42164000;
+  const v_GEO = 3070;
+  const omega = 7.2921159e-5;
+  const mu = 3.986004418e14;
+
+  const energia =
+    0.5 * 1000 * Math.pow(v_GEO - omega * R_T * Math.cos(phi), 2) +
+    ((1000 * mu) / 2) * (1 / R_T - 1 / r_GEO);
+
+  const ganhoRotacao = omega * R_T * Math.cos(phi);
+
+  let eficiencia = "";
+
+  if (ganhoRotacao > 420) {
+    eficiencia = "Eficiência: Perfeita";
+  } else if (ganhoRotacao > 350) {
+    eficiencia = "Eficiência: Alta";
+  } else if (ganhoRotacao > 200) {
+    eficiencia = "Eficiência: Média";
+  } else if (ganhoRotacao > 100) {
+    eficiencia = "Eficiência: Baixa";
+  } else {
+    eficiencia = "Eficiência: Muito Baixa";
+  }
+
+  return [energia, ganhoRotacao, eficiencia];
+}
+
+function compararLatitudes(lat1, lat2) {
+  const e1 = calcularEnergia(lat1);
+  const e2 = calcularEnergia(lat2);
+  const economia = e1 - e2;
+
+  return economia;
+}
+
 // GERADOR DO MAPA
 const saoPaulo = [-29.9672, -51.201884];
 const coordsText = document.getElementById("coords");
@@ -53,6 +95,8 @@ btnComp.addEventListener("click", () => {
   document.querySelectorAll(".dadosInd").forEach((e) => e.remove());
   document.querySelector(".dados").innerHTML =
     "<div class='analiseComp'><label for='base' class='dadosComp'>Nome Base 1</label> <input type='text' id='base' class='dadosComp'> <label for='latitude' class='dadosComp'>Latitude base 1</label> <input id='latitude' type='text' class='dadosComp'> <label for='base2' class='dadosComp'>Nome Base 2</label> <input type='text' id='base2' class='dadosComp'> <label for='lat2' class='dadosComp'>Latitude base 2</label> <input id='lat2' type='text' class='dadosComp'> <button class='dadosComp' id='botao'>Analisar lançamento</button>  <div id='erro' class='dadosComp'></div>";
+  document.querySelector(".botaoComp").style.backgroundColor = "#1a1a1a";
+  document.querySelector(".botaoInd").style.backgroundColor = "#9d8e8e";
 });
 
 //Ação ao trocar para Análise Indivudal
@@ -60,6 +104,8 @@ btnInd.addEventListener("click", () => {
   document.querySelectorAll(".dadosComp").forEach((e) => e.remove());
   document.querySelector(".dados").innerHTML =
     "<div class='analiseInd'><label for='base' class='dadosInd'>Nome da Base</label><input id='base' type='text' class='dadosInd' /><label for='latitude' class='dadosInd'>Latitude</label><input id='latitude' type='text' class='dadosInd' /><button id='botao' class='dadosInd'>Analisar Lançamento</button><div id='erro' class='dadosInd'></div>";
+  document.querySelector(".botaoInd").style.backgroundColor = "#1a1a1a";
+  document.querySelector(".botaoComp").style.backgroundColor = "#9d8e8e";
 });
 
 const btnAnalisar = document.getElementById("botao");
@@ -109,46 +155,6 @@ dados.addEventListener("click", (event) => {
       }
     }
 
-    function calcularEnergia(latitude) {
-      const phi = latitude * (Math.PI / 180);
-
-      const R_T = 6371000;
-      const r_GEO = 42164000;
-      const v_GEO = 3070;
-      const omega = 7.2921159e-5;
-      const mu = 3.986004418e14;
-
-      const energia =
-        0.5 * 1000 * Math.pow(v_GEO - omega * R_T * Math.cos(phi), 2) +
-        ((1000 * mu) / 2) * (1 / R_T - 1 / r_GEO);
-
-      const ganhoRotacao = omega * R_T * Math.cos(phi);
-
-      let eficiencia = "";
-
-      if (ganhoRotacao > 420) {
-        eficiencia = "Eficiência: Perfeita";
-      } else if (ganhoRotacao > 350) {
-        eficiencia = "Eficiência: Alta";
-      } else if (ganhoRotacao > 200) {
-        eficiencia = "Eficiência: Média";
-      } else if (ganhoRotacao > 100) {
-        eficiencia = "Eficiência: Baixa";
-      } else {
-        eficiencia = "Eficiência: Muito Baixa";
-      }
-
-      return [energia, ganhoRotacao, eficiencia];
-    }
-
-    function compararLatitudes(lat1, lat2) {
-      const e1 = calcularEnergia(lat1);
-      const e2 = calcularEnergia(lat2);
-      const economia = e1 - e2;
-
-      return economia;
-    }
-
     if (erros == 0) {
       if (document.querySelector("#lat2")) {
         const latitude2 = document.getElementById("lat2").value;
@@ -162,9 +168,31 @@ dados.addEventListener("click", (event) => {
         document.querySelectorAll(".dadosComp").forEach((e) => e.remove());
         document.querySelector(".btsTroca").remove();
         document.querySelector(".dados").innerHTML =
-          `<div> <h2>Resultado</h2><div class='resultComp'><div class='base1'><p>Base 1</p><p id='base'>Base: ${base}</p> <p id='latitude'>Latitude: ${latitude}</p><p>Energia estimada</p><p>${energia1.toFixed(2)} MJ/t</p> <p>Ganho de rotação</p> <p>${ganhoRotacao1.toFixed(2)} m/s</p><p>${eficiencia1}</p></div>
-          <div class='base2'><p>Base 2</p><p id='base2'>Base: ${base2} </p> <p id='latitude2'>Latitude:${latitude2} </p><p>Energia estimada</p><p>${energia2.toFixed(2)} MJ/t</p> <p>Ganho de rotação</p> <p>${ganhoRotacao2.toFixed(2)} m/s</p><p>${eficiencia2}</p></div></div> <button id='btnReset'>Nova análise</button>`;
-        console.log(ganhoRotacao2);
+          `<div> <h2>Resultado</h2><div class='resultComp'><div class='base1 fundoResult'><div><p class='fonte'>BASE 1</p><p id='base' class='base'>${base}</p> <p id='latitude' class='fonte'>Latitude: ${latitude}</p></div><div><p class='fonte'>Energia estimada</p><p class='energia'>${energia1.toFixed(2)} MJ/t</p> <p class='fonte'>Ganho de rotação</p> <p>${ganhoRotacao1.toFixed(2)} m/s</p></div><p class='ef1'>${eficiencia1}</p></div>
+          <div class='base2 fundoResult'><div><p class='fonte'>BASE 2</p><p id='base2' class='base'>${base2} </p> <p id='latitude2' class='fonte'>Latitude:${latitude2} </p></div><div><p class='fonte'>Energia estimada</p><p class='energia'>${energia2.toFixed(2)} MJ/t</p> <p class='fonte'>Ganho de rotação</p> <p>${ganhoRotacao2.toFixed(2)} m/s</p></div><p class='ef2'>${eficiencia2}</p></div></div> <button id='btnReset'>Nova análise</button>`;
+        if (eficiencia1 === "Eficiência: Perfeita") {
+          document.querySelector(".ef1").style.backgroundColor = "#1e3a5f";
+        } else if (eficiencia1 === "Eficiência: Alta") {
+          document.querySelector(".ef1").style.backgroundColor = "#166534";
+        } else if (eficiencia1 === "Eficiência: Média") {
+          document.querySelector(".ef1").style.backgroundColor = "#713f12";
+        } else if (eficiencia1 === "Eficiência: Baixa") {
+          document.querySelector(".ef1").style.backgroundColor = "#7c2d12";
+        } else if (eficiencia1 === "Eficiência: Muito Baixa") {
+          document.querySelector(".ef1").style.backgroundColor = "#450a0a";
+        }
+
+        if (eficiencia2 === "Eficiência: Perfeita") {
+          document.querySelector(".ef2").style.backgroundColor = "#1e3a5f";
+        } else if (eficiencia2 === "Eficiência: Alta") {
+          document.querySelector(".ef2").style.backgroundColor = "#166534";
+        } else if (eficiencia2 === "Eficiência: Média") {
+          document.querySelector(".ef2").style.backgroundColor = "#713f12";
+        } else if (eficiencia2 === "Eficiência: Baixa") {
+          document.querySelector(".ef2").style.backgroundColor = "#7c2d12";
+        } else if (eficiencia2 === "Eficiência: Muito Baixa") {
+          document.querySelector(".ef2").style.backgroundColor = "#450a0a";
+        }
         btnReset.addEventListener("click", () => {
           location.reload();
         });
@@ -173,7 +201,18 @@ dados.addEventListener("click", (event) => {
         document.querySelectorAll(".dadosInd").forEach((e) => e.remove());
         document.querySelector(".btsTroca").remove();
         document.querySelector(".dados").innerHTML =
-          `<div class='resultInd'><h2>Resultado</h2> <p id='base'>${base}</p> <p id='latitude'>${latitude}</p><h2>Energia estimada</h2><p id='energia'>${energia.toFixed(2)} MJ/t</p><p>Ganho rotação</p> <p id='rotacao'>${ganhoRotacao.toFixed(2)} m/s</p> <p>${eficiencia}</p> <button id='btnReset'>Nova análise</button></div>`;
+          `<div class='resultInd'><div class ='conteudo'><div><h2>Resultado</h2>  <p id='base'>Base: ${base}</p> <p id='latitude'>Latitude: ${latitude}</p></div><div><h2>Energia estimada</h2><p id='energia' class='energia'>${energia.toFixed(2)} MJ/t</p></div><div><p>Ganho rotação</p> <p id='rotacao'>${ganhoRotacao.toFixed(2)} m/s</p></div> <p class='ef'>${eficiencia}</p></div><div class='btnNvAnalise'><button id='btnReset'>Nova análise</button></div>`;
+        if (eficiencia === "Eficiência: Perfeita") {
+          document.querySelector(".ef").style.backgroundColor = "#1e3a5f";
+        } else if (eficiencia === "Eficiência: Alta") {
+          document.querySelector(".ef").style.backgroundColor = "#166534";
+        } else if (eficiencia === "Eficiência: Média") {
+          document.querySelector(".ef").style.backgroundColor = "#713f12";
+        } else if (eficiencia === "Eficiência: Baixa") {
+          document.querySelector(".ef").style.backgroundColor = "#7c2d12";
+        } else if (eficiencia === "Eficiência: Muito Baixa") {
+          document.querySelector(".ef").style.backgroundColor = "#450a0a";
+        }
         btnReset.addEventListener("click", () => {
           location.reload();
         });

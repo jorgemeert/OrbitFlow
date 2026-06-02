@@ -14,6 +14,8 @@ main {
 
 header {
   margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid red;
 }
 
 .conteudoPrincipal {
@@ -21,14 +23,6 @@ header {
   place-content: center;
   grid-template-columns: auto auto;
   gap: 120px;
-}
-
-/* ========================
-   CABEÇALHO
-======================== */
-.cabecalho {
-  text-align: center;
-  border-bottom: 2px solid red;
 }
 
 h1 {
@@ -70,11 +64,12 @@ h1 {
 }
 
 .btsTroca {
-  display: flex;
-  background-color: #1a1a1a;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   place-content: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  gap: 10px;
+  /* border-top-left-radius: 8px;
+  border-top-right-radius: 8px; */
 }
 
 .btnTroca {
@@ -100,6 +95,70 @@ h1 {
 .resultComp {
   display: grid;
   grid-template-columns: auto auto;
+  gap: 10px;
+  text-align: start;
+  padding: 10px;
+  line-height: 0.9;
+}
+
+.fundoResult {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  gap: 0px;
+  display: grid;
+}
+.fundoResult div p {
+  margin: 8px;
+}
+
+.resultInd {
+  text-align: start;
+}
+
+.ef {
+  border-radius: 8px;
+  display: inline-block;
+  padding: 8px;
+  margin-bottom: 30px;
+}
+
+.resultInd div {
+  line-height: 0.7;
+}
+
+.conteudo {
+  margin-top: 30px;
+  padding-left: 50px;
+}
+
+.btnNvAnalise {
+  text-align: center;
+}
+
+.ef1 {
+  margin: 8px;
+  padding: 2px;
+  border-radius: 8px;
+  text-align: center;
+}
+.ef2 {
+  margin: 8px;
+  background-color: #22c55e;
+  padding: 2px;
+  border-radius: 8px;
+  text-align: center;
+}
+.fonte {
+  color: #aaa;
+}
+.base {
+  font-size: 18px;
+}
+
+.energia {
+  color: #22c55e;
+  font-family: 22px;
+  font-weight: 700;
 }
 
 /* ========================
@@ -116,9 +175,21 @@ input {
 /* ========================
    BOTÕES
 ======================== */
+.botaoInd {
+  background-color: #1a1a1a;
+  padding: 6px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.botaoComp {
+  background-color: #9d8e8e;
+  padding: 6px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
 button {
   border: 0;
-  background-color: #1a1a1a;
   color: #fff;
   font-size: 14px;
 }
@@ -149,4 +220,22 @@ button {
 
 .erroCaixa {
   border: 1px solid red;
+}
+
+footer {
+  text-align: center;
+}
+
+.rodape {
+  background-color: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+  text-align: start;
 }

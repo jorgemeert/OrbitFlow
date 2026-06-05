@@ -4,21 +4,20 @@
 
 // Calcula energia necessária e ganho de rotação com base na latitude
 function calcularEnergia(latitude) {
-  const phi = latitude * (Math.PI / 180);
 
+  latitude = parseFloat(latitude);
+
+  const phi = latitude * (Math.PI / 180);
   const R_T = 6371000;
   const r_GEO = 42164000;
   const v_GEO = 3070;
   const omega = 7.2921159e-5;
   const mu = 3.986004418e14;
-
-  const energia =
-    0.5 * 1000 * Math.pow(v_GEO - omega * R_T * Math.cos(phi), 2) +
-    ((1000 * mu) / 2) * (1 / R_T - 1 / r_GEO);
-
   const ganhoRotacao = omega * R_T * Math.cos(phi);
+  const delta_vi = 2 * v_GEO * Math.sin(Math.abs(latitude) * (Math.PI / 180));
 
-  // Define o nível de eficiência com base no ganho de rotação
+  const energia = (0.5 * 1000 * Math.pow(v_GEO - ganhoRotacao + delta_vi, 2) + ((1000 * mu) / 2) * ((1 / R_T) - (1 / r_GEO))) * Math.pow(10, -6);
+
   let eficiencia = "";
 
   if (ganhoRotacao > 420) {
@@ -38,11 +37,10 @@ function calcularEnergia(latitude) {
 
 // Compara a energia entre duas latitudes e retorna a economia
 function compararLatitudes(lat1, lat2) {
-  const e1 = calcularEnergia(lat1);
-  const e2 = calcularEnergia(lat2);
-  const economia = e1 - e2;
+  const energia1 = calcularEnergia(lat1)[0];
+  const energia2 = calcularEnergia(lat2)[0];
 
-  return economia;
+  return Math.abs(energia1 - energia2);
 }
 
 // ========================

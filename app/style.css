@@ -33,12 +33,21 @@ main {
   gap: 120px;
 }
 
+
+
 /* ========================
    HEADER
 ======================== */
 header {
   margin-bottom: 20px;
   text-align: center;
+}
+
+p {
+  background-color: #f9f6f6;
+  padding: 6px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 header::after {
@@ -264,4 +273,15 @@ button {
 
 .erroCaixa {
   border: 1px solid red;
+}
+
+/* ==========================
+    BACKGROUND
+============================= */
+body {
+    background-image: url('./background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

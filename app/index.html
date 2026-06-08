@@ -22,21 +22,27 @@
     </header>
     <main>
       <section class="conteudoPrincipal">
-        <div id="map" aria-label="Mapa OpenStreetMap"></div>
+        <div id="map" aria-label="Mapa OpenStreetMap" tabindex="-1"></div>
 
         <p id="coords">Clique no mapa para ver latitude e longitude.</p>
         <div>
           <div class="btsTroca">
-            <button id="btnInd" class="botaoInd">Análise individual</button>
-            <button id="btnComp" class="botaoComp">Análise Comparativa</button>
+            <button id="btnInd" class="botaoInd" tabindex="1">
+              Análise individual
+            </button>
+            <button id="btnComp" class="botaoComp" tabindex="2">
+              Análise Comparativa
+            </button>
           </div>
           <div class="dados">
             <div class="analiseInd">
               <label for="base" class="dadosInd">Nome da Base</label>
-              <input id="base" type="text" class="dadosInd" />
+              <input id="base" type="text" class="dadosInd" tabindex="3" />
               <label for="latitude" class="dadosInd">Latitude</label>
-              <input id="latitude" type="text" class="dadosInd" />
-              <button id="botao" class="dadosInd">Analisar Lançamento</button>
+              <input id="latitude" type="text" class="dadosInd" tabindex="4" />
+              <button id="botao" class="dadosInd" tabindex="5">
+                Analisar Lançamento
+              </button>
               <div id="erro" class="dadosInd"></div>
             </div>
           </div>

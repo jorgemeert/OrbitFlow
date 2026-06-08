@@ -104,7 +104,7 @@ const btnInd = document.getElementById("btnInd");
 btnComp.addEventListener("click", () => {
   document.querySelectorAll(".dadosInd").forEach((e) => e.remove());
   document.querySelector(".dados").innerHTML =
-    "<div class='analiseComp'><label for='base' class='dadosComp'>Nome Base 1</label> <input type='text' id='base' class='dadosComp'> <label for='latitude' class='dadosComp'>Latitude base 1</label> <input id='latitude' type='text' class='dadosComp'> <label for='base2' class='dadosComp'>Nome Base 2</label> <input type='text' id='base2' class='dadosComp'> <label for='lat2' class='dadosComp'>Latitude base 2</label> <input id='lat2' type='text' class='dadosComp'> <button class='dadosComp' id='botao'>Analisar lançamento</button>  <div id='erro' class='dadosComp'></div>";
+    "<div class='analiseComp'><label for='base' class='dadosComp'>Nome Base 1</label> <input type='text' id='base' class='dadosComp' tabindex='3'> <label for='latitude' class='dadosComp'>Latitude base 1</label> <input id='latitude' type='text' class='dadosComp' tabindex='4'> <label for='base2' class='dadosComp'>Nome Base 2</label> <input type='text' id='base2' class='dadosComp' tabindex='5'> <label for='lat2' class='dadosComp'>Latitude base 2</label> <input id='lat2' type='text' class='dadosComp' tabindex='6'> <button class='dadosComp' id='botao' tabindex='7'>Analisar lançamento</button>  <div id='erro' class='dadosComp'></div>";
   document.querySelector(".botaoComp").style.backgroundColor = "#1a1a1a";
   document.querySelector(".botaoInd").style.backgroundColor = "#9d8e8e";
 });
@@ -113,7 +113,7 @@ btnComp.addEventListener("click", () => {
 btnInd.addEventListener("click", () => {
   document.querySelectorAll(".dadosComp").forEach((e) => e.remove());
   document.querySelector(".dados").innerHTML =
-    "<div class='analiseInd'><label for='base' class='dadosInd'>Nome da Base</label><input id='base' type='text' class='dadosInd' /><label for='latitude' class='dadosInd'>Latitude</label><input id='latitude' type='text' class='dadosInd' /><button id='botao' class='dadosInd'>Analisar Lançamento</button><div id='erro' class='dadosInd'></div>";
+    "<div class='analiseInd'><label for='base' class='dadosInd'>Nome da Base</label><input id='base' type='text' class='dadosInd' tabindex='3' /><label for='latitude' class='dadosInd'>Latitude</label><input id='latitude' type='text' class='dadosInd' tabindex='4' /><button id='botao' class='dadosInd' tabindex='5'>Analisar Lançamento</button><div id='erro' class='dadosInd'></div>";
   document.querySelector(".botaoInd").style.backgroundColor = "#1a1a1a";
   document.querySelector(".botaoComp").style.backgroundColor = "#9d8e8e";
 });
